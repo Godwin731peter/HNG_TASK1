@@ -17,4 +17,4 @@ ENV DJANGO_SETTINGS_MODULE=hng_task1.settings
 
 EXPOSE 8000
 
-CMD sh -c "python manage.py migrate && gunicorn hng_task.wsgi:application --bind 0.0.0.0:${PORT:-8000}"
+CMD sh -c "python manage.py migrate && gunicorn hng_task1.wsgi:application --bind 0.0.0.0:${PORT:-8000}"
