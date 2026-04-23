@@ -20,6 +20,7 @@ class ProfileFullSerializer(serializers.ModelSerializer):
             'age',
             'age_group',
             'country_id',
+            'country_name',
             'country_probability',
             'created_at',
         ]
@@ -28,6 +29,10 @@ class ProfileFullSerializer(serializers.ModelSerializer):
 class ProfileListSerializer(serializers.ModelSerializer):
     """Used for GET all profiles — returns subset of fields."""
     id = serializers.UUIDField(read_only=True)
+    created_at = serializers.DateTimeField(
+        format='%Y-%m-%dT%H:%M:%SZ', read_only=True
+    )
+
 
     class Meta:
         model = Profile
@@ -35,9 +40,13 @@ class ProfileListSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'gender',
+            'gender_probability',
             'age',
             'age_group',
             'country_id',
+            'country_name',
+            'country_probability',
+            'created_at',
         ]
 
 
