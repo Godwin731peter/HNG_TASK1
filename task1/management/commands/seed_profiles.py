@@ -6,7 +6,17 @@ class Command(BaseCommand):
     help = "Seed database with 2026 profiles"
 
     def handle(self, *args, **kwargs):
-        with open("seed_profiles.json", "r") as f:
+
+         # Always find the JSON file relative to the project root
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+        json_path = os.path.join(base_dir, "seed_profiles.json")
+
+        if not os.path.exists(json_path):
+            self.stdout.write(self.style.ERROR(f"❌ seed_profiles.json not found at {json_path}"))
+            return
+
+
+        with open(json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
         profiles = data.get("profiles", [])
