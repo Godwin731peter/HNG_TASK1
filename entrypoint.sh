@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Running migrations..."
-python manage.py migrate
+python manage.py migrate --noinput
 
 echo "Seeding profiles..."
 python manage.py seed_profiles
